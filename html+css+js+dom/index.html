@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Title of the document</title>
+<link rel="stylesheet" href="./banana.css">
+</head>
+<body>
+    <header>Something really important is in the header</header>
+    <nav>
+        <a href="../html/index.html">HTML</a> |
+        <a href="../html+css/index.html">CSS</a> |
+        <a href="../html+css+js/index.html">JavaScript</a> |
+        <a href="../html+css+js+dom/index.html">DOM</a>
+      </nav>
+      <section id="pbjt">Peanut butter jelly time</section>
+      <section><div id="banana"></div></section>
+    <footer>HTML + css + js + DOM</footer>
+</body>
+<script>
+  const banana = document.getElementById('banana');
+  let posY = 0;
+  const fps = 60;
+  let goForth = true;
+  const moveDiv = () => {
+    setTimeout(() => {
+      goForth ? posY += 5 : posY -= 5;
+      if (posY === 200) {
+        goForth = false;
+      } else if (posY === 0) {
+        goForth = true;
+      }
+      banana.style.left = posY + 'px';
+      requestAnimationFrame(moveDiv);
+    }, 1000 / fps);
+  };
+  const words = document.getElementById('pbjt');
+  const wordsText = words.innerHTML.split(' ');
+  words.innerHTML = '';
+  let index = 0;
+  const appendWords = () => {
+
+    if(!wordsText[index]) {
+      index = 0;
+    }
+    words.innerHTML += ` ${wordsText[index]}`;
+    index++;
+  }
+  setInterval(appendWords, 500);
+  requestAnimationFrame(moveDiv);
+</script>
+</html>
